@@ -1,0 +1,25 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=postgres
+      - REDIS_HOST=redis
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: tracking
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"

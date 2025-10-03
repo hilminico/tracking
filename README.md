@@ -1,0 +1,2 @@
+- Cara menjalankan dengan Docker: `docker-compose up`
+- Cara menjalankan tanpa Docker: setup PostgreSQL dan Redis, lalu `npm run start:dev`
