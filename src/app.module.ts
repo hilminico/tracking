@@ -5,7 +5,7 @@ import { CustomerModule } from './customer/customer.module';
 import { VehicleModule } from './vehicle/vehicle.module';
 import { TrackingModule } from './tracking/tracking.module';
 import { DatabaseModule } from './shared/infrastructure/database/database.module';
-// import { RedisModule } from './shared/infrastructure/redis/redis.module';
+import { RedisModule } from './shared/infrastructure/redis/redis.module';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { DatabaseModule } from './shared/infrastructure/database/database.module
       isGlobal: true,
     }),
     DatabaseModule,
-    // RedisModule,
+    RedisModule,
     AuthModule,
     CustomerModule,
     VehicleModule,

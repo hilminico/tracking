@@ -6,6 +6,11 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "test:concurrent": "jest --config ./test/jest.concurrency.json",
+    "test:concurrent:auth": "jest --config ./test/jest.concurrency.json --testNamePattern=\"Auth Concurrency\"",
+    "test:concurrent:tracking": "jest --config ./test/jest.concurrency.json --testNamePattern=\"Tracking Concurrency\"",
+    "test:concurrent:websocket": "jest --config ./test/jest.concurrency.json --testNamePattern=\"WebSocket Concurrency\"",
+    "test:concurrent:performance": "jest --config ./test/jest.concurrency.json --testNamePattern=\"Performance Monitoring\"",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",

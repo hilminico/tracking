@@ -3,12 +3,19 @@ import { WebSocketGateway, WebSocketServer, SubscribeMessage, OnGatewayConnectio
 import { Server, Socket } from 'socket.io';
 import { TrackingService } from '../../application/services/tracking.service';
 
-@WebSocketGateway({ cors: true })
+@WebSocketGateway(
+  {
+    cors: {
+      origin: '*',
+    },
+    namespace: '/tracking',
+  })
+
 export class TrackingGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
 
-  constructor(private trackingService: TrackingService) {}
+  constructor(private trackingService: TrackingService) { }
 
   handleConnection(client: Socket) {
     console.log(`Client connected: ${client.id}`);
@@ -30,7 +37,6 @@ export class TrackingGateway implements OnGatewayConnection, OnGatewayDisconnect
     client.emit('leftSession', sessionId);
   }
 
-  // Method untuk mengirim update lokasi ke client yang join di session
   async sendLocationUpdate(sessionId: string, location: any) {
     this.server.to(sessionId).emit('locationUpdate', location);
   }

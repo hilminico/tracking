@@ -1,6 +1,7 @@
 // src/vehicle/domain/entities/vehicle.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import { Customer } from '../../../customer/domain/entities/customer.entity';
+import { TrackingSession } from 'src/tracking/domain/entities/tracking-session.entity';
 
 @Entity('vehicles')
 export class Vehicle {
@@ -16,20 +17,12 @@ export class Vehicle {
   @Column()
   model: string;
 
+  @Column()
+  customerId: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @ManyToOne(() => Customer, (customer) => customer.vehicles, {
-    onDelete: 'CASCADE',
-    nullable: false,
-  })
-
-  @JoinColumn({ name: 'customerId' })
-  customer: Customer;
-
-  @Column()
-  customerId: string;
 }

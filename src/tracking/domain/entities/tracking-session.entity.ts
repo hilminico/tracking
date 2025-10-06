@@ -1,5 +1,5 @@
 // src/tracking/domain/entities/tracking-session.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import { Vehicle } from '../../../vehicle/domain/entities/vehicle.entity';
 import { Location } from './location.entity';
 
@@ -13,6 +13,9 @@ export class TrackingSession {
 
   @ManyToOne(() => Vehicle, vehicle => vehicle.id)
   vehicle: Vehicle;
+
+  @JoinColumn({ name: 'vehicleId' })
+  customer: Vehicle;
 
   @Column({ default: true })
   isActive: boolean;

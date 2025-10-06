@@ -21,11 +21,4 @@ export class Customer {
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @OneToMany(() => Vehicle, (vehicle) => vehicle.customer, {
-    cascade: true,
-    eager: false,
-  })
-
-  vehicles: Vehicle[];
 }
